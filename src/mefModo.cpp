@@ -1,8 +1,5 @@
 #include <mefModo.h>
 extern Keypad keypad;
-
-
-//const int rs = 1, en = 9, d4 = 10, d5 = 11, d6 = 12, d7 = 13;
 extern LiquidCrystal lcd;
 
 static bool filtering =  false;
@@ -14,8 +11,8 @@ int hoursToFilter, hoursToSleep, temperatureToHeat;
 static estMefModo_enum est_MefModo;
 
 /*==================[internal function definition]==========================*/
-void Temporizador(void);
-void temperatureTimer(void);
+static void Temporizador(void);
+static void temperatureTimer(void);
 
 
 /*==================[external functions definition]==========================*/
