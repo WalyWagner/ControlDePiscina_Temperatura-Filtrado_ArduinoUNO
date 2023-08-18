@@ -32,7 +32,7 @@ Si encuentra problemas, errores o tiene sugerencias para mejorar este proyecto, 
 
 ## Licencia
 
-Este proyecto está bajo la Licencia [MIT](src/readme.txt). Por favor, consulte el archivo [readme.txt](src/readme.txt) en la carpeta `src` para obtener más detalles sobre los términos y condiciones de la licencia.
+Este proyecto está bajo la Licencia [MIT](src/ReadMe.txt). Por favor, consulte el archivo [ReadMe.txt](src/ReadMe.txt) en la carpeta `src` para obtener más detalles sobre los términos y condiciones de la licencia.
 
 ---
 
