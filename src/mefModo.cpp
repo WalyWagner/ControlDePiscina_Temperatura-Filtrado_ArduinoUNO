@@ -1,5 +1,4 @@
-/****************************************************************************************************
- ************************** CONTROL DE PISCINA - Temperatura y Filtrado *****************************
+/************************** CONTROL DE PISCINA - Temperatura y Filtrado *****************************
  ********************* FACULTAD DE CIENCIAS EXACTAS, INGENIERÍA Y AGRIEMENSURA **********************
  ****************************************************************************************************
  ***************************************************************************WsS**********************
@@ -150,15 +149,18 @@ void mefModo() {
 
 
 /*==================[internal function definition]==========================*/
-
+/** @brief this function is attached to TIMER 1 interruption rutine 
+ *
+ * You to change from filtering mode to sleep mode when the work is done!
+ */
 void filteringTimer(void){
 	if (filtering==true && waiting == false) // we have interrupted because filtering routine is done
 	{
 		filtering = false ; 
 		waiting = true;
 		Timer1.stop();
-		Timer1.initialize(1000000 * hoursToSleep);      //Configura el TIMER en hoursToFilter Segundos
-		Timer1.attachInterrupt(filteringTimer) ; //Configura la interrupción del Timer 1
+		Timer1.initialize(1000000 * hoursToSleep);      //Config TIMER -> hoursToSleep Secs
+		Timer1.attachInterrupt(filteringTimer) ; //Config interrupt Timer 1
 		return;
 	}
 	if (filtering==false && waiting == true) // we have interrupted because filtering routine is done
@@ -166,12 +168,17 @@ void filteringTimer(void){
 		filtering = true ; 
 		waiting = false;
 		Timer1.stop();
-		Timer1.initialize(1000000 * hoursToFilter);      //Configura el TIMER en hoursToFilter Segundos
+		Timer1.initialize(1000000 * hoursToFilter);      //Config TIMER -> hoursToFilter Secs
 		Timer1.attachInterrupt(filteringTimer) ; //Configura la interrupción del Timer 1
 		return;
 	}
 }
-void temperatureTimer(void){ // CON HISTÉRESIS DE 5 GRADOS !!
+
+/** @brief this function is attached to TIMER 2 interruption rutine 
+ *
+ * You want to measure temperature periodically 
+ */
+void temperatureTimer(void){ // 5 DEGREES CELSIUM HISTERESIS !!
 	float tempC = analogRead(TEMPERATURE_SENSOR);
 	tempC = (5.0 * tempC * 100.0)/1024.0;
 	lcd.setCursor(0, 1); 	lcd.print("Temp: ");
